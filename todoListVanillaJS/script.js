@@ -44,20 +44,21 @@ function newTodo() {
   button.style.float = 'right';
   button.onclick = (e) => {
     e.preventDefault();
-    if (!e.target.previousSibling.classList.contains(classNames.TODO_DELETE)) {
-      count--;
-      if (e.target.previousSibling.previousSibling.checked == true) {
-        uncheckedCountSpan.innerHTML = `${count - checked + 1}`;
-        checked--;
-      } else {
-        uncheckedCountSpan.innerHTML = `${count - checked}`;
-      }
-      /* Update the un check and count */
-      itemCountSpan.innerHTML = `${count}`;
-      //uncheckedCountSpan.innerHTML = `${count - checked}`;
-      e.target.previousSibling.classList.add(classNames.TODO_DELETE);
+
+    count--;
+    if (e.target.previousSibling.previousSibling.checked == true) {
+      uncheckedCountSpan.innerHTML = `${count - checked + 1}`;
+      checked--;
+    } else {
+      uncheckedCountSpan.innerHTML = `${count - checked}`;
     }
+    /* Update the un check and count */
+    itemCountSpan.innerHTML = `${count}`;
+    e.target.previousSibling.classList.add(classNames.TODO_DELETE);
+    /* Disable the delete button */
+    e.target.disabled = true;
   };
+  /* checkbox/label/button */
   todo.appendChild(checkbox);
   todo.appendChild(label);
   todo.appendChild(button);
